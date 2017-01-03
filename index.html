@@ -6,16 +6,23 @@
     <script src='voicerss-tts.min.js'></script>
 </head>
 <body>
+    <!-- Load Babel -->
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    <script src="weather.js"></script>
     <script>
+        var time = Date.now();
+        var Moscow = new currentWeather("q", "Moscow", "standard");
+        var options = {description: true, temp: true, pressure: true, humidity: true, temp_min: true, temp_max: true, sea_level: true, grnd_level: true, wind: {speed: true, deg: true, diraction: true}, clouds: {all: true}};
         VoiceRSS.speech({
             key: '4f2153e7bff44d83ab8436be4500b476',
-            src: 'Hello, world!',
+            src: Moscow.toString(options),
             hl: 'en-us',
             r: 0, 
             c: 'mp3',
             f: '44khz_16bit_stereo',
             ssml: false
         });
+        console.log(Date.now() - time);
     </script>
 </body>
 </html>
