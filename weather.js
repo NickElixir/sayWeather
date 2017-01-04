@@ -48,6 +48,9 @@ class currentWeather {
 		}
 	}
 	toString(options) {
+		if(!options) {
+			var options = {description: true, temp: true, pressure: true, humidity: true, temp_min: true, temp_max: true, sea_level: true, grnd_level: true, wind: {speed: true, deg: true, diraction: true}, clouds: {all: true}};
+		}
 		let parameteres = [];
 		if (options.description) {
 			let randomChoice = Math.floor(Math.random() * (1 - 0 + 1)) + 0;
@@ -128,17 +131,14 @@ class currentWeather {
 						var diraction = "north";
 						break;
 				}
-				parameteres.push("The wind diraction is " + diraction + ".");
-			}
-			if (options.wind.deg) {
-				if (options.wind.diraction) {
-					let last = parameteres[parameteres.length - 1];
-					last = last.slice(0, last.length - 1);
-					last += " and " + this.wind.deg + " degrees.";
-					parameteres[parameteres.length - 1] = last;
+				if (options.wind.deg) {
+					parameteres.push("The wind diraction is " + diraction + " and " + this.wind.deg + " degrees.");
 				} else {
-					parameteres.push("The wind diraction is " + this.wind.deg + " degrees.");
+					parameteres.push("The wind diraction is " + diraction + ".");
 				}
+			}
+			if (options.wind.deg && !options.wind.diraction) {
+				parameteres.push("The wind diraction is " + this.wind.deg + " degrees.");
 			}
 		}
 		if (options.clouds) {
