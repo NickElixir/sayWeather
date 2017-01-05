@@ -94,11 +94,14 @@ class currentWeather {
 		if (options.humidity) {
 			parameteres.push("The humidity is " + this.main.humidity + "%.");
 		}
-		if (options.temp_min) {
-			parameteres.push("The minimum temperature at the moment is " + this.main.temp_min + ".");
-		}
-		if (options.temp_max) {
-			parameteres.push("The maximum temperature at the moment is " + this.main.temp_max + ".");
+		if (options.temp_min && options.temp_max) {
+			parameteres.push("The minimum temperature now is " + this.main.temp_min + " and maximum is " + this.main.temp_min + ".");
+		} else {
+			if (options.temp_min) {
+				parameteres.push("The minimum temperature at the moment is " + this.main.temp_min + ".");
+			} else {
+				parameteres.push("The maximum temperature at the moment is " + this.main.temp_max + ".");
+			}
 		}
 		if (options.wind) {
 			if (options.wind.speed) {
