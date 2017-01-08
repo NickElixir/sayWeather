@@ -4,17 +4,21 @@
     <title></title>
     <meta charset='utf-8' />
     <script src='voicerss-tts.min.js'></script>
-</head>
-<body>
-    <!-- Load Babel -->
-    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    <script src="region.js"></script>
     <script src="weather.js"></script>
     <script>
+        var applicationLanguage = "en";
+    </script>
+</head>
+<body>
+    <script>
         var time = Date.now();
-        var Moscow = new currentWeather("q", "Moscow", "standard");
+        var found = searchRegion("london");
+        var MoscowWeather = new currentWeather("id", found[i].id, "standard");
+        console.log(MoscowWeather);
         VoiceRSS.speech({
             key: '4f2153e7bff44d83ab8436be4500b476',
-            src: Moscow.toString(),
+            src: MoscowWeather.toString(),
             hl: 'en-us',
             r: 0, 
             c: 'mp3',

@@ -1,8 +1,8 @@
-const appid = "bbeb94a0d34c88951a762a3585cf1b1c";
+const weatherApiKey = "bbeb94a0d34c88951a762a3585cf1b1c";
 class currentWeather {
 	constructor(requestType, city, units) {
 		let request = new XMLHttpRequest();
-		let http = "http://api.openweathermap.org/data/2.5/weather?appid=" + appid + "&lang=en&units=" + units;
+		let http = "http://api.openweathermap.org/data/2.5/weather?appid=" + weatherApiKey + "&lang=" + applicationLanguage + "&units=" + units;
 		switch (requestType) {
 			case "q":
 				http += "&q=" + city;

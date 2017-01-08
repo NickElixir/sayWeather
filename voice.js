@@ -1,6 +1,6 @@
-var apiKey = "4f2153e7bff44d83ab8436be4500b476";
+const voiceApiKey = "4f2153e7bff44d83ab8436be4500b476";
 VoiceRSS.speech({
-            key: '4f2153e7bff44d83ab8436be4500b476',
+            key: voiceApiKey,
             src: 'Привет, Мир!',
             hl: 'en-us',
             r: 0, 
