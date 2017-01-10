@@ -5,7 +5,9 @@
     <meta charset='utf-8' />
     <script src='voicerss-tts.min.js'></script>
     <script src="region.js"></script>
+    <script src="table.js"></script>
     <script src="weather.js"></script>
+    <script src="C:\Users\Николай Луценко\Documents\GitHub\form.js"></script>
     <script>
         var applicationLanguage = "en";
     </script>
@@ -13,19 +15,19 @@
 <body>
     <script>
         var time = Date.now();
-        var found = searchRegion("london");
-        var MoscowWeather = new currentWeather("id", found[i].id, "standard");
-        console.log(MoscowWeather);
-        VoiceRSS.speech({
-            key: '4f2153e7bff44d83ab8436be4500b476',
-            src: MoscowWeather.toString(),
-            hl: 'en-us',
-            r: 0, 
-            c: 'mp3',
-            f: '44khz_16bit_stereo',
-            ssml: false
-        });
+        var found = searchRegion("lon");
+        var elements = [];
+        for (let i in found) {
+            found[i].render();
+            elements.push(found[i].tr);
+        }
+        var regionTable = new RegionTable(elements);
+        console.log(regionTable);
+        document.body.appendChild(regionTable.table.elem);
         console.log(Date.now() - time);
+    </script>
+    <script>
+        //document.body.appendChild(new Form ("searchForm", [new Search("search", "Регион")], "Форма поиска", function() {}, new Submit("submitSearch", "Поиск")).elem);
     </script>
 </body>
 </html>

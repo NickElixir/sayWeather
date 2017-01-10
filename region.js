@@ -4,9 +4,10 @@ class Region {
         this.id = id;
         this.country = country;
     }
-	/* render() {
-
-	} */
+	render() {
+		let tr = new Tr("tr", [{innerHTML: this.name}, {innerHTML: this.country}]);
+		this.tr = tr;
+	}
 }
 function searchRegion(city) {
     let request = new XMLHttpRequest();
@@ -27,4 +28,17 @@ function searchRegion(city) {
 			alert("Sorry, this city is not found.");
 		}
     }
+}
+class RegionTable { //no headers
+	constructor(tr, options) {
+		this.tr = tr;
+		if (options) {
+			this.options = options;
+		}
+		this.render();
+	}
+	render() {
+		let table = new Table(this.tr, {id: "regionTable"});
+		this.table = table;
+	}
 }
