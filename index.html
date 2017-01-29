@@ -4,10 +4,12 @@
     <title></title>
     <meta charset='utf-8' />
     <script src='voicerss-tts.min.js'></script>
-    <script src="region.js"></script>
+    <!--<script src="C:\Users\Николай Луценко\Documents\GitHub\form.js"></script>-->
+    <script src="form.js"></script>
+    <script src="note.js"></script>
     <script src="table.js"></script>
+    <script src="region.js"></script>
     <script src="weather.js"></script>
-    <script src="C:\Users\Николай Луценко\Documents\GitHub\form.js"></script>
     <script>
         var applicationLanguage = "en";
     </script>
@@ -15,19 +17,10 @@
 <body>
     <script>
         var time = Date.now();
-        var found = searchRegion("lon");
-        var elements = [];
-        for (let i in found) {
-            found[i].render();
-            elements.push(found[i].tr);
-        }
-        var regionTable = new RegionTable(elements);
-        console.log(regionTable);
-        document.body.appendChild(regionTable.table.elem);
+        var form = new SearchRegionForm();
+        console.log(form);
+        document.body.appendChild(form.elem);
         console.log(Date.now() - time);
-    </script>
-    <script>
-        //document.body.appendChild(new Form ("searchForm", [new Search("search", "Регион")], "Форма поиска", function() {}, new Submit("submitSearch", "Поиск")).elem);
     </script>
 </body>
 </html>

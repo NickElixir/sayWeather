@@ -7,13 +7,12 @@ class Form {
         }
         if (submitFunc) {
             this.submitFunc = submitFunc;
-        } else {
-            alert("There is no submit function! Please add to this.submitFunc.");
         }
+            //If there is no submit function, please add to this.submitFunc.
         if (submitElem) {
             this.submitElem = submitElem;
         } else {
-            alert("Therу is no submit element! It will be made automatically.");
+            //If there is no submit element, it will be made automatically.
             this.submitElem = new Submit(this.name + "-submit", "Отправить");
         }
         this.render();
@@ -104,7 +103,11 @@ class Radio extends Input {
         super.render();
         let input = this.elem;
         input.type = this.type;
-        input.value = this.value;
+        if(this.options) {
+            for (let i in this.options) {
+                input.setAttribute(i, this.options[i]);
+            } 
+        }
         p.appendChild(input);
         p.appendChild(document.createTextNode(this.header));
         p.addEventListener("click", focusRadioParagraph);
