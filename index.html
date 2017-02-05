@@ -4,23 +4,38 @@
     <title></title>
     <meta charset='utf-8' />
     <script src='voicerss-tts.min.js'></script>
-    <!--<script src="C:\Users\Николай Луценко\Documents\GitHub\form.js"></script>-->
+    <script src="user.js"></script>
     <script src="form.js"></script>
     <script src="note.js"></script>
     <script src="table.js"></script>
     <script src="region.js"></script>
     <script src="weather.js"></script>
     <script>
-        var applicationLanguage = "en";
+        if (!localStorage.sayWeatherUserData) {
+            var sayWeatherUserData = new SayWeatherUserData("en");
+            sayWeatherUserData.save();
+            console.log(sayWeatherUserData);
+        } else {
+            var sayWeatherUserData = readSayWeatherUserData();
+            console.log(sayWeatherUserData);
+        }
     </script>
 </head>
 <body>
     <script>
         var time = Date.now();
         var form = new SearchRegionForm();
-        console.log(form);
         document.body.appendChild(form.elem);
         console.log(Date.now() - time);
+        function weatherToSpeech() {
+            console.log(sayWeatherUserData.weatherId);
+            new currentWeather("id", sayWeatherUserData.regionId, "metric").toSpeech();
+        }
     </script>
+    <div id="b1" style="background-color: #E678BB">weatherToSpeech</div>
+    <script>
+        document.querySelector("#b1").addEventListener("click", weatherToSpeech);
+    </script>
+
 </body>
 </html>

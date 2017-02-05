@@ -1,9 +1,7 @@
-const weatherApiKey = "bbeb94a0d34c88951a762a3585cf1b1c";
 class currentWeather {
-	constructor(requestType, city, units) {
-		let request = new XMLHttpRequest();
-		let http = "http://api.openweathermap.org/data/2.5/weather?appid=" + weatherApiKey + "&lang=" + applicationLanguage + "&units=" + units;
-		switch (requestType) {
+	constructor(weatherRequestType, city, units) {
+		let http = "http://api.openweathermap.org/data/2.5/weather?appid=" +sayWeatherUserData.weatherApiKey + "&lang=" + sayWeatherUserData.language + "&units=" + units;
+		switch (weatherRequestType) {
 			case "q":
 				http += "&q=" + city;
 				break;
@@ -14,11 +12,14 @@ class currentWeather {
 				http += "&lon=" + city.lon + "&lat=" + city.lat; 
 				break;
 		}
+		let request = new XMLHttpRequest();
 		request.open("GET", http, false);
 		request.send();
+		console.log("Data getted");
 		if (request.status != 200) {
 			alert(request.status + ': ' + request.statusText);
 		} else {
+			console.log("Date getted succesfully");
 			let answer = JSON.parse(request.responseText);
 			for (let key in answer) {
 				this[key] = answer[key];
@@ -152,5 +153,16 @@ class currentWeather {
 			string += (parameteres[i] + " ");
 		}
 		return string;
+	}
+	toSpeech() {
+		VoiceRSS.speech({
+            key: sayWeatherUserData.voiceApiKey,
+			src: this.toString(),
+            hl: 'en-us',
+            r: 0, 
+            c: 'mp3',
+            f: '44khz_16bit_stereo',
+            ssml: false
+        });
 	}
 }
