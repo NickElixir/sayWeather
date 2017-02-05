@@ -1,9 +1,7 @@
 class Table {
     constructor(elements, options) {
         this.elements = elements;
-        if (options) {
-            this.options = options;
-        }
+        this.options = options ? options : null;
         this.render();
     }
     render() {
@@ -23,9 +21,7 @@ class Tbody {
     constructor(type, elements, options) {
         this.type = type;
         this.elements = elements;
-        if (options) {
-            this.options = options;
-        }
+        this.options = options ? options : null;
         this.render();
     }
     render() {
@@ -46,17 +42,15 @@ class Tbody {
     }
 
 }
-class Tr {
+class Th_Tr {
     constructor(type, elements, options) {
         this.type = type;
         this.elements = elements;
-        if (options) {
-            this.options = options;
-        }
+        this.options = options ? options : null;
         this.render();
     }
     render() {
-        if (this.type =="th") {
+        if (this.type.toLowerCase() =="th") {
             var elem = document.createElement("th");
         } else {
             var elem = document.createElement("tr");
@@ -75,9 +69,7 @@ class Tr {
 class Td {
     constructor(innerHTML, options) {
         this.innerHTML = innerHTML;
-        if (options) {
-            this.options = options;
-        }
+        this.options = options ? options : null;
         this.render();
     }
     render() {

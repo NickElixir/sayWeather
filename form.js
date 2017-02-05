@@ -2,19 +2,11 @@ class Form {
     constructor(name, elements, legend, submitFunc, submitElem) {
         this.name = name;
         this.elements = elements;
-        if (legend) {
-            this.legend = legend;
-        }
-        if (submitFunc) {
-            this.submitFunc = submitFunc;
-        }
+        this.legend = legend ? legend : null;
+        this.submitFunc = submitFunc ? submitFunc : null;
             //If there is no submit function, please add to this.submitFunc.
-        if (submitElem) {
-            this.submitElem = submitElem;
-        } else {
+            this.submitElem = submitElem ? submitElem : new Submit(this.name + "-submit", "Отправить");
             //If there is no submit element, it will be made automatically.
-            this.submitElem = new Submit(this.name + "-submit", "Отправить");
-        }
         this.render();
     }
     render() {
@@ -52,9 +44,7 @@ class Input {
             this.type = "text";
         }
         this.header = header;
-        if (options) {
-            this.options = options;
-        }
+        this.options = options ? options : null;
         if (!parent) {
             this.render();
         }

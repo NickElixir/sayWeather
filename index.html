@@ -8,6 +8,8 @@
     <script src="form.js"></script>
     <script src="note.js"></script>
     <script src="table.js"></script>
+    <script src="list.js"></script>
+    <script src="menu.js"></script>
     <script src="region.js"></script>
     <script src="weather.js"></script>
     <script>
@@ -20,9 +22,105 @@
             console.log(sayWeatherUserData);
         }
     </script>
+    <style>
+        .navOpen {
+            overflow: hidden;
+        }
+        @media (max-width: 768px) {
+            .openNav {
+            transition-duration: 0.5s;
+            transition-timing-function: swing;
+            max-width: 2.5em;
+            max-height: 50px;
+            background-color: #14B9FF;
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 9;
+            }
+
+            .openNav:hover {
+            cursor: pointer;
+            }
+            .openNav .icon {
+            transition-duration: 0.2s;
+            position: absolute;
+            width: 30px;
+            height: 2px;
+            background-color: white;
+            top: 10px;
+            }
+            .openNav .icon:before,
+            .openNav .icon:after {
+            transition-duration: 0.5s;
+            background-color: white;
+            position: absolute;
+            content: "";
+            width: 30px;
+            height: 2px;
+            left: 0px;
+            }
+            .openNav .icon:before {
+            top: -7px;
+            }
+            .openNav .icon:after {
+            top: 7px;
+            }
+            .openNav.open .icon {
+            background-color: transparent;
+            }
+            .openNav.open .icon:before,
+            .openNav.open .icon:after {
+            top: 0;
+            }
+            .openNav.open .icon:before {
+            transform: rotate(-45deg);
+            -webkit-transform: rotate(-45deg);
+            }
+            .openNav.open .icon:after {
+            transform: rotate(45deg);
+            -webkit-transform: rotate(45deg);
+            }
+        }
+        nav {
+        background-color: #00e700;
+        width: 100%;
+        height: 100%;
+        position: fixed;
+        left: 0;
+        top: 0;
+        }
+        nav ul {
+        width: 7em;
+        margin-top: 4em;
+        }
+        nav ul:hover li {
+        color: rgba(255, 255, 255, 0.5);
+        }
+        nav ul li {
+        transition-duration: 0.25s;
+        display: block;
+        padding: 10px;
+        color: white;
+        letter-spacing: 0.02em;
+        text-align: center;
+        font-size: 1.2em;
+        }
+        nav ul li:hover {
+        cursor: pointer;
+        color: white;
+        }
+        .visible {
+            display: block;
+        }
+        .invisible {
+            display: nonуж
+        }
+    </style>
 </head>
 <body>
     <script>
+        /*
         var time = Date.now();
         var form = new SearchRegionForm();
         document.body.appendChild(form.elem);
@@ -30,12 +128,10 @@
         function weatherToSpeech() {
             console.log(sayWeatherUserData.weatherId);
             new currentWeather("id", sayWeatherUserData.regionId, "metric").toSpeech();
-        }
+        } */
+        let menu = new Menu([new Li("Главная", {key: "main"}), new Li("О приложении", {key: "about"})]);
+        console.log(menu);
+        document.body.appendChild(menu.elem);
     </script>
-    <div id="b1" style="background-color: #E678BB">weatherToSpeech</div>
-    <script>
-        document.querySelector("#b1").addEventListener("click", weatherToSpeech);
-    </script>
-
 </body>
 </html>

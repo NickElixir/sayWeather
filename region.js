@@ -7,7 +7,7 @@ class Region {
         this.country = country;
     }
 	render() {
-		let tr = new Tr("tr", [{innerHTML: this.name}, {innerHTML: this.lat + String.fromCharCode(176)}, {innerHTML: this.lon + String.fromCharCode(176)}, {innerHTML: this.country}], {regionId: this.id});
+		let tr = new Th_Tr("tr", [{innerHTML: this.name}, {innerHTML: this.lat + String.fromCharCode(176)}, {innerHTML: this.lon + String.fromCharCode(176)}, {innerHTML: this.country}], {regionId: this.id});
 		this.tr = tr;
 	}
 }
@@ -81,7 +81,6 @@ class SearchRegionForm extends Form{
 								for (let i in answer.list) {
 									cities.push(new Region(answer.list[i].name, answer.list[i].id, answer.list[i].coord.lat, answer.list[i].coord.lon, answer.list[i].sys.country));
 								}
-								console.log(cities);
 								let tr = [];
 								for (let i in cities) {
 									cities[i].render();
