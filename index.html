@@ -23,6 +23,17 @@
         }
     </script>
     <style>
+        .container {
+            transition-duration: 0.5s;
+            transition-timing-function: swing;
+            height: 100%;
+            position: relative;
+            margin-top: 3.5em;
+        }
+        .container.open {
+            transform: translateX(5.5em);
+            -webkit-transform: translateX(6.5em);
+        }
         .navOpen {
             overflow: hidden;
         }
@@ -120,18 +131,29 @@
 </head>
 <body>
     <script>
-        /*
+        let menu = new Menu([new Li("Главная", {key: "main"}), new Li("О приложении", {key: "about"})]);
+        document.body.appendChild(menu.elem);
+
+        let div = document.createElement("div");
+        div.className = "container";
+
+        let section = document.createElement("section");
+        section.id = "main";
+        section.className = "visible";
         var time = Date.now();
         var form = new SearchRegionForm();
-        document.body.appendChild(form.elem);
-        console.log(Date.now() - time);
+        section.appendChild(form.elem);
         function weatherToSpeech() {
             console.log(sayWeatherUserData.weatherId);
-            new currentWeather("id", sayWeatherUserData.regionId, "metric").toSpeech();
-        } */
-        let menu = new Menu([new Li("Главная", {key: "main"}), new Li("О приложении", {key: "about"})]);
-        console.log(menu);
-        document.body.appendChild(menu.elem);
+            let weather = new currentWeather("id", sayWeatherUserData.regionId, "metric").toSpeech();
+        }
+        let button = document.createElement("button");
+        button.innerHTML = "weatherToSpeech";
+        button.style.backgroundColor = "#67E";
+        button.addEventListener("click", weatherToSpeech);
+        section.appendChild(button);
+        div.appendChild(section);
+        document.body.appendChild(div);
     </script>
 </body>
 </html>

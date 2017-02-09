@@ -20,8 +20,10 @@ class RegionTable extends Table { //no headers
 		this.elem.addEventListener("click", function(event) {
 			let target = event.target;
 			target = target.closest("tr");
-			target.className = "selected";
-			sayWeatherUserData.regionId = target.getAttribute("regionId");
+			if (target) {
+				target.className = "selected";
+				sayWeatherUserData.regionId = target.getAttribute("regionId");
+			}
 		});
 	}
 }
@@ -88,7 +90,8 @@ class SearchRegionForm extends Form{
 								}
 								let table = new RegionTable(tr, {id: "searchedRegions"});
 								this.table = table;
-								document.forms.searchRegionForm.appendChild(table.elem);
+								if (table) document.forms.searchRegionForm.removeChild(table);
+								document.forms.searchRegionForm.appendChild(this.table.elem);
 							} else {
 								alert("Sorry, this city is not found.");
 							}
