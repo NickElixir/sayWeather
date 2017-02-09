@@ -12,6 +12,7 @@
     <script src="menu.js"></script>
     <script src="region.js"></script>
     <script src="weather.js"></script>
+    <link rel="stylesheet" href="style.css" />
     <script>
         if (!localStorage.sayWeatherUserData) {
             var sayWeatherUserData = new SayWeatherUserData("en");
@@ -22,116 +23,10 @@
             console.log(sayWeatherUserData);
         }
     </script>
-    <style>
-        .container {
-            transition-duration: 0.5s;
-            transition-timing-function: swing;
-            height: 100%;
-            position: relative;
-            margin-top: 3.5em;
-        }
-        .container.open {
-            transform: translateX(5.5em);
-            -webkit-transform: translateX(6.5em);
-        }
-        .navOpen {
-            overflow: hidden;
-        }
-        @media (max-width: 768px) {
-            .openNav {
-            transition-duration: 0.5s;
-            transition-timing-function: swing;
-            max-width: 2.5em;
-            max-height: 50px;
-            background-color: #14B9FF;
-            position: fixed;
-            top: 20px;
-            left: 20px;
-            z-index: 9;
-            }
-
-            .openNav:hover {
-            cursor: pointer;
-            }
-            .openNav .icon {
-            transition-duration: 0.2s;
-            position: absolute;
-            width: 30px;
-            height: 2px;
-            background-color: white;
-            top: 10px;
-            }
-            .openNav .icon:before,
-            .openNav .icon:after {
-            transition-duration: 0.5s;
-            background-color: white;
-            position: absolute;
-            content: "";
-            width: 30px;
-            height: 2px;
-            left: 0px;
-            }
-            .openNav .icon:before {
-            top: -7px;
-            }
-            .openNav .icon:after {
-            top: 7px;
-            }
-            .openNav.open .icon {
-            background-color: transparent;
-            }
-            .openNav.open .icon:before,
-            .openNav.open .icon:after {
-            top: 0;
-            }
-            .openNav.open .icon:before {
-            transform: rotate(-45deg);
-            -webkit-transform: rotate(-45deg);
-            }
-            .openNav.open .icon:after {
-            transform: rotate(45deg);
-            -webkit-transform: rotate(45deg);
-            }
-        }
-        nav {
-        background-color: #00e700;
-        width: 100%;
-        height: 100%;
-        position: fixed;
-        left: 0;
-        top: 0;
-        }
-        nav ul {
-        width: 7em;
-        margin-top: 4em;
-        }
-        nav ul:hover li {
-        color: rgba(255, 255, 255, 0.5);
-        }
-        nav ul li {
-        transition-duration: 0.25s;
-        display: block;
-        padding: 10px;
-        color: white;
-        letter-spacing: 0.02em;
-        text-align: center;
-        font-size: 1.2em;
-        }
-        nav ul li:hover {
-        cursor: pointer;
-        color: white;
-        }
-        .visible {
-            display: block;
-        }
-        .invisible {
-            display: nonуж
-        }
-    </style>
 </head>
 <body>
     <script>
-        let menu = new Menu([new Li("Главная", {key: "main"}), new Li("О приложении", {key: "about"})]);
+        let menu = new Menu([new Li("Главная", {key: "main"})]);
         document.body.appendChild(menu.elem);
 
         let div = document.createElement("div");
@@ -147,12 +42,21 @@
             console.log(sayWeatherUserData.weatherId);
             let weather = new currentWeather("id", sayWeatherUserData.regionId, "metric").toSpeech();
         }
-        let button = document.createElement("button");
+        let button = document.createElement("div");
+        button.className = "button";
         button.innerHTML = "weatherToSpeech";
         button.style.backgroundColor = "#67E";
         button.addEventListener("click", weatherToSpeech);
         section.appendChild(button);
         div.appendChild(section);
+        let svg = document.createElement("svg");
+        svg.innerHTML = '<svg class="spinner" width="65px" height="65px" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg"><circle class="path" fill="none" stroke-width="6" stroke-linecap="round" cx="33" cy="33" r="30"></circle>';
+        svg.className = "spinner";
+        svg.setAttribute("width", "2.5rem");
+        svg.setAttribute("height", "2.5rem");
+        svg.setAttribute("viewBox", "0 0 66 66");
+        svg.setAttribute("xmlns", "http://www.w3.org/2000/svg");
+        div.appendChild(svg);
         document.body.appendChild(div);
     </script>
 </body>

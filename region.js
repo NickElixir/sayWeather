@@ -90,6 +90,7 @@ class SearchRegionForm extends Form{
 								}
 								let table = new RegionTable(tr, {id: "searchedRegions"});
 								this.table = table;
+								table = document.body.querySelector("#searchedRegions");
 								if (table) document.forms.searchRegionForm.removeChild(table);
 								document.forms.searchRegionForm.appendChild(this.table.elem);
 							} else {
