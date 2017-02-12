@@ -13,7 +13,7 @@ class Ol_Ul {
             var list = document.createElement("ul");
         }
         for (let i in this.elements) {
-            list.appendChild(this.elements[i].elem);
+            list.appendChild(this.elements[i].elem ? this.elements[i].elem : this.elements[i]);
         }
         for (let i in this.options) {
             list.setAttribute(i, this.options[i]);

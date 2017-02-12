@@ -57,11 +57,16 @@ body {
   transition-timing-function: swing;
   height: 100%;
   position: relative;
-  margin-top: 3.5em;
 }
 .container.open {
   transform: translateX(5.5em);
   -webkit-transform: translateX(6.5em);
+}
+header {
+  display: block;
+  position: relative;
+  width: 100%;
+  padding: 0.5em 1.5em;
 }
 /* custom button styles */
 .button {

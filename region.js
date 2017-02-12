@@ -29,6 +29,7 @@ class RegionTable extends Table { //no headers
 }
 function searchRegion(city) {
 	let request = new XMLHttpRequest();
+	document.body.querySelector(".cssload-wrapper").classList.toggle("invisible");
 	request.open("GET", "http://api.openweathermap.org/data/2.5/find?type=like&appid=" + sayWeatherUserData.weatherApiKey + "&q=" + city, true);
 	request.send();
 	request.timeout = 30000;
@@ -38,6 +39,7 @@ function searchRegion(city) {
 	request.onreadystatechange = function() {
 		if (request.readyState != 4) return;
 		console.log("data getted");
+		document.body.querySelector(".cssload-wrapper").classList.toggle("invisible");
 		if (request.status == 200) {
 			console.log("date getted successfully");
 			let answer = JSON.parse(request.responseText);

@@ -9,10 +9,12 @@
     <script src="note.js"></script>
     <script src="table.js"></script>
     <script src="list.js"></script>
+    <script src="header.js"></script>
     <script src="menu.js"></script>
     <script src="region.js"></script>
     <script src="weather.js"></script>
     <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="loadingIcon.css" />
     <script>
         if (!localStorage.sayWeatherUserData) {
             var sayWeatherUserData = new SayWeatherUserData("en");
@@ -26,11 +28,19 @@
 </head>
 <body>
     <script>
+        //let svg = document.createElement("svg");
+        //svg.innerHTML = '<svg class="spinner" width="65px" height="65px" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg"><circle class="path" fill="none" stroke-width="6" stroke-linecap="round" cx="33" cy="33" r="30"></circle>';
+
         let menu = new Menu([new Li("Главная", {key: "main"})]);
         document.body.appendChild(menu.elem);
 
         let div = document.createElement("div");
         div.className = "container";
+        let loadingIcon = document.createElement("div");
+        loadingIcon.innerHTML = '<div class="cssload-wrapper"><div class="cssload-dots"></div></div>';
+        loadingIcon.className = "invisible";
+        let header = new Header([loadingIcon]);
+        document.body.appendChild(header.elem);
 
         let section = document.createElement("section");
         section.id = "main";
@@ -49,14 +59,6 @@
         button.addEventListener("click", weatherToSpeech);
         section.appendChild(button);
         div.appendChild(section);
-        let svg = document.createElement("svg");
-        svg.innerHTML = '<svg class="spinner" width="65px" height="65px" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg"><circle class="path" fill="none" stroke-width="6" stroke-linecap="round" cx="33" cy="33" r="30"></circle>';
-        svg.className = "spinner";
-        svg.setAttribute("width", "2.5rem");
-        svg.setAttribute("height", "2.5rem");
-        svg.setAttribute("viewBox", "0 0 66 66");
-        svg.setAttribute("xmlns", "http://www.w3.org/2000/svg");
-        div.appendChild(svg);
         document.body.appendChild(div);
     </script>
 </body>

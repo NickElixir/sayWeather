@@ -1,0 +1,306 @@
+.cssload-wrraper{
+	width:0px;
+	display:block;
+	margin: 1em auto;
+}
+	
+.cssload-dots {
+	font-family: sans-serif;
+	font-weight: 100;
+}
+
+.cssload-dots:not(:required) {
+	overflow: hidden;
+	position: relative;
+	text-indent: -9999px;
+	display: inline-block;
+	width: 0.2em;
+	height: 0.2em;
+	background: transparent;
+	border-radius: 100%;
+	box-shadow: rgb(255,136,102) -1em -1em 0 0.5em, rgb(255,204,102) 1em -1em 0 0.5em, rgb(102,221,119) 1em 1em 0 0.5em, rgb(68,170,238) -1em 1em 0 0.5em;
+		-o-box-shadow: rgb(255,136,102) -1em -1em 0 0.5em, rgb(255,204,102) 1em -1em 0 0.5em, rgb(102,221,119) 1em 1em 0 0.5em, rgb(68,170,238) -1em 1em 0 0.5em;
+		-ms-box-shadow: rgb(255,136,102) -1em -1em 0 0.5em, rgb(255,204,102) 1em -1em 0 0.5em, rgb(102,221,119) 1em 1em 0 0.5em, rgb(68,170,238) -1em 1em 0 0.5em;
+		-webkit-box-shadow: rgb(255,136,102) -1em -1em 0 0.5em, rgb(255,204,102) 1em -1em 0 0.5em, rgb(102,221,119) 1em 1em 0 0.5em, rgb(68,170,238) -1em 1em 0 0.5em;
+		-moz-box-shadow: rgb(255,136,102) -1em -1em 0 0.5em, rgb(255,204,102) 1em -1em 0 0.5em, rgb(102,221,119) 1em 1em 0 0.5em, rgb(68,170,238) -1em 1em 0 0.5em;
+	animation: cssload-dots 4.25s infinite ease-in-out;
+		-o-animation: cssload-dots 4.25s infinite ease-in-out;
+		-ms-animation: cssload-dots 4.25s infinite ease-in-out;
+		-webkit-animation: cssload-dots 4.25s infinite ease-in-out;
+		-moz-animation: cssload-dots 4.25s infinite ease-in-out;
+	transform-origin: 50% 50%;
+		-o-transform-origin: 50% 50%;
+		-ms-transform-origin: 50% 50%;
+		-webkit-transform-origin: 50% 50%;
+		-moz-transform-origin: 50% 50%;
+}
+
+@keyframes cssload-dots {
+	0% {
+		box-shadow: white 0 0 1.1em 0, rgb(255,136,102) -1em -1em 0 0.5em, rgb(255,204,102) 1em -1em 0 0.5em, rgb(102,221,119) 1em 1em 0 0.5em, rgb(68,170,238) -1em 1em 0 0.5em;
+	}
+
+	8.33% {
+		box-shadow: white 0 0 1.1em 0, rgb(255,136,102) 1em -1em 0 0.5em, rgb(255,204,102) 1em -1em 0 0.5em, rgb(102,221,119) 1em 1em 0 0.5em, rgb(68,170,238) -1em 1em 0 0.5em;
+	}
+
+	16.67% {
+		box-shadow: white 0 0 1.1em 0, rgb(255,136,102) 1em 1em 0 0.5em, rgb(255,204,102) 1em 1em 0 0.5em, rgb(102,221,119) 1em 1em 0 0.5em, rgb(68,170,238) -1em 1em 0 0.5em;
+	}
+
+	25% {
+		box-shadow: white 0 0 1.1em 0, #ff8866 -1em 1em 0 0.5em, #ffcc66 -1em 1em 0 0.5em, #66dd77 -1em 1em 0 0.5em, #44aaee -1em 1em 0 0.5em;
+	}
+
+	33.33% {
+		box-shadow: white 0 0 1.1em 0, #ff8866 -1em -1em 0 0.5em, #ffcc66 -1em 1em 0 0.5em, #66dd77 -1em -1em 0 0.5em, #44aaee -1em -1em 0 0.5em;
+	}
+
+	41.67% {
+		box-shadow: white 0 0 1.1em 0, #ff8866 1em -1em 0 0.5em, #ffcc66 -1em 1em 0 0.5em, #66dd77 -1em -1em 0 0.5em, #44aaee 1em -1em 0 0.5em;
+	}
+
+	50% {
+		box-shadow: white 0 0 1.1em 0, #ff8866 1em 1em 0 0.5em, #ffcc66 -1em 1em 0 0.5em, #66dd77 -1em -1em 0 0.5em, #44aaee 1em -1em 0 0.5em;
+	}
+
+	58.33% {
+		box-shadow: white 0 0 1.1em 0, #ff8866 -1em 1em 0 0.5em, #ffcc66 -1em 1em 0 0.5em, #66dd77 -1em -1em 0 0.5em, #44aaee 1em -1em 0 0.5em;
+	}
+
+	66.67% {
+		box-shadow: white 0 0 1.1em 0, #ff8866 -1em -1em 0 0.5em, #ffcc66 -1em -1em 0 0.5em, #66dd77 -1em -1em 0 0.5em, #44aaee 1em -1em 0 0.5em;
+	}
+
+	75% {
+		box-shadow: white 0 0 1.1em 0, #ff8866 1em -1em 0 0.5em, #ffcc66 1em -1em 0 0.5em, #66dd77 1em -1em 0 0.5em, #44aaee 1em -1em 0 0.5em;
+	}
+
+	83.33% {
+		box-shadow: white 0 0 1.1em 0, #ff8866 1em 1em 0 0.5em, #ffcc66 1em -1em 0 0.5em, #66dd77 1em 1em 0 0.5em, #44aaee 1em 1em 0 0.5em;
+	}
+
+	91.67% {
+		box-shadow: white 0 0 1.1em 0, #ff8866 -1em 1em 0 0.5em, #ffcc66 1em -1em 0 0.5em, #66dd77 1em 1em 0 0.5em, #44aaee -1em 1em 0 0.5em;
+	}
+
+	100% {
+		box-shadow: white 0 0 1.1em 0, #ff8866 -1em -1em 0 0.5em, #ffcc66 1em -1em 0 0.5em, #66dd77 1em 1em 0 0.5em, #44aaee -1em 1em 0 0.5em;
+	}
+}
+
+@-o-keyframes cssload-dots {
+	0% {
+		box-shadow: white 0 0 1.1em 0, rgb(255,136,102) -1em -1em 0 0.5em, rgb(255,204,102) 1em -1em 0 0.5em, rgb(102,221,119) 1em 1em 0 0.5em, rgb(68,170,238) -1em 1em 0 0.5em;
+	}
+
+	8.33% {
+		box-shadow: white 0 0 1.1em 0, rgb(255,136,102) 1em -1em 0 0.5em, rgb(255,204,102) 1em -1em 0 0.5em, rgb(102,221,119) 1em 1em 0 0.5em, rgb(68,170,238) -1em 1em 0 0.5em;
+	}
+
+	16.67% {
+		box-shadow: white 0 0 1.1em 0, rgb(255,136,102) 1em 1em 0 0.5em, rgb(255,204,102) 1em 1em 0 0.5em, rgb(102,221,119) 1em 1em 0 0.5em, rgb(68,170,238) -1em 1em 0 0.5em;
+	}
+
+	25% {
+		box-shadow: white 0 0 1.1em 0, #ff8866 -1em 1em 0 0.5em, #ffcc66 -1em 1em 0 0.5em, #66dd77 -1em 1em 0 0.5em, #44aaee -1em 1em 0 0.5em;
+	}
+
+	33.33% {
+		box-shadow: white 0 0 1.1em 0, #ff8866 -1em -1em 0 0.5em, #ffcc66 -1em 1em 0 0.5em, #66dd77 -1em -1em 0 0.5em, #44aaee -1em -1em 0 0.5em;
+	}
+
+	41.67% {
+		box-shadow: white 0 0 1.1em 0, #ff8866 1em -1em 0 0.5em, #ffcc66 -1em 1em 0 0.5em, #66dd77 -1em -1em 0 0.5em, #44aaee 1em -1em 0 0.5em;
+	}
+
+	50% {
+		box-shadow: white 0 0 1.1em 0, #ff8866 1em 1em 0 0.5em, #ffcc66 -1em 1em 0 0.5em, #66dd77 -1em -1em 0 0.5em, #44aaee 1em -1em 0 0.5em;
+	}
+
+	58.33% {
+		box-shadow: white 0 0 1.1em 0, #ff8866 -1em 1em 0 0.5em, #ffcc66 -1em 1em 0 0.5em, #66dd77 -1em -1em 0 0.5em, #44aaee 1em -1em 0 0.5em;
+	}
+
+	66.67% {
+		box-shadow: white 0 0 1.1em 0, #ff8866 -1em -1em 0 0.5em, #ffcc66 -1em -1em 0 0.5em, #66dd77 -1em -1em 0 0.5em, #44aaee 1em -1em 0 0.5em;
+	}
+
+	75% {
+		box-shadow: white 0 0 1.1em 0, #ff8866 1em -1em 0 0.5em, #ffcc66 1em -1em 0 0.5em, #66dd77 1em -1em 0 0.5em, #44aaee 1em -1em 0 0.5em;
+	}
+
+	83.33% {
+		box-shadow: white 0 0 1.1em 0, #ff8866 1em 1em 0 0.5em, #ffcc66 1em -1em 0 0.5em, #66dd77 1em 1em 0 0.5em, #44aaee 1em 1em 0 0.5em;
+	}
+
+	91.67% {
+		box-shadow: white 0 0 1.1em 0, #ff8866 -1em 1em 0 0.5em, #ffcc66 1em -1em 0 0.5em, #66dd77 1em 1em 0 0.5em, #44aaee -1em 1em 0 0.5em;
+	}
+
+	100% {
+		box-shadow: white 0 0 1.1em 0, #ff8866 -1em -1em 0 0.5em, #ffcc66 1em -1em 0 0.5em, #66dd77 1em 1em 0 0.5em, #44aaee -1em 1em 0 0.5em;
+	}
+}
+
+@-ms-keyframes cssload-dots {
+	0% {
+		box-shadow: white 0 0 1.1em 0, rgb(255,136,102) -1em -1em 0 0.5em, rgb(255,204,102) 1em -1em 0 0.5em, rgb(102,221,119) 1em 1em 0 0.5em, rgb(68,170,238) -1em 1em 0 0.5em;
+	}
+
+	8.33% {
+		box-shadow: white 0 0 1.1em 0, rgb(255,136,102) 1em -1em 0 0.5em, rgb(255,204,102) 1em -1em 0 0.5em, rgb(102,221,119) 1em 1em 0 0.5em, rgb(68,170,238) -1em 1em 0 0.5em;
+	}
+
+	16.67% {
+		box-shadow: white 0 0 1.1em 0, rgb(255,136,102) 1em 1em 0 0.5em, rgb(255,204,102) 1em 1em 0 0.5em, rgb(102,221,119) 1em 1em 0 0.5em, rgb(68,170,238) -1em 1em 0 0.5em;
+	}
+
+	25% {
+		box-shadow: white 0 0 1.1em 0, #ff8866 -1em 1em 0 0.5em, #ffcc66 -1em 1em 0 0.5em, #66dd77 -1em 1em 0 0.5em, #44aaee -1em 1em 0 0.5em;
+	}
+
+	33.33% {
+		box-shadow: white 0 0 1.1em 0, #ff8866 -1em -1em 0 0.5em, #ffcc66 -1em 1em 0 0.5em, #66dd77 -1em -1em 0 0.5em, #44aaee -1em -1em 0 0.5em;
+	}
+
+	41.67% {
+		box-shadow: white 0 0 1.1em 0, #ff8866 1em -1em 0 0.5em, #ffcc66 -1em 1em 0 0.5em, #66dd77 -1em -1em 0 0.5em, #44aaee 1em -1em 0 0.5em;
+	}
+
+	50% {
+		box-shadow: white 0 0 1.1em 0, #ff8866 1em 1em 0 0.5em, #ffcc66 -1em 1em 0 0.5em, #66dd77 -1em -1em 0 0.5em, #44aaee 1em -1em 0 0.5em;
+	}
+
+	58.33% {
+		box-shadow: white 0 0 1.1em 0, #ff8866 -1em 1em 0 0.5em, #ffcc66 -1em 1em 0 0.5em, #66dd77 -1em -1em 0 0.5em, #44aaee 1em -1em 0 0.5em;
+	}
+
+	66.67% {
+		box-shadow: white 0 0 1.1em 0, #ff8866 -1em -1em 0 0.5em, #ffcc66 -1em -1em 0 0.5em, #66dd77 -1em -1em 0 0.5em, #44aaee 1em -1em 0 0.5em;
+	}
+
+	75% {
+		box-shadow: white 0 0 1.1em 0, #ff8866 1em -1em 0 0.5em, #ffcc66 1em -1em 0 0.5em, #66dd77 1em -1em 0 0.5em, #44aaee 1em -1em 0 0.5em;
+	}
+
+	83.33% {
+		box-shadow: white 0 0 1.1em 0, #ff8866 1em 1em 0 0.5em, #ffcc66 1em -1em 0 0.5em, #66dd77 1em 1em 0 0.5em, #44aaee 1em 1em 0 0.5em;
+	}
+
+	91.67% {
+		box-shadow: white 0 0 1.1em 0, #ff8866 -1em 1em 0 0.5em, #ffcc66 1em -1em 0 0.5em, #66dd77 1em 1em 0 0.5em, #44aaee -1em 1em 0 0.5em;
+	}
+
+	100% {
+		box-shadow: white 0 0 1.1em 0, #ff8866 -1em -1em 0 0.5em, #ffcc66 1em -1em 0 0.5em, #66dd77 1em 1em 0 0.5em, #44aaee -1em 1em 0 0.5em;
+	}
+}
+
+@-webkit-keyframes cssload-dots {
+	0% {
+		box-shadow: white 0 0 1.1em 0, rgb(255,136,102) -1em -1em 0 0.5em, rgb(255,204,102) 1em -1em 0 0.5em, rgb(102,221,119) 1em 1em 0 0.5em, rgb(68,170,238) -1em 1em 0 0.5em;
+	}
+
+	8.33% {
+		box-shadow: white 0 0 1.1em 0, rgb(255,136,102) 1em -1em 0 0.5em, rgb(255,204,102) 1em -1em 0 0.5em, rgb(102,221,119) 1em 1em 0 0.5em, rgb(68,170,238) -1em 1em 0 0.5em;
+	}
+
+	16.67% {
+		box-shadow: white 0 0 1.1em 0, rgb(255,136,102) 1em 1em 0 0.5em, rgb(255,204,102) 1em 1em 0 0.5em, rgb(102,221,119) 1em 1em 0 0.5em, rgb(68,170,238) -1em 1em 0 0.5em;
+	}
+
+	25% {
+		box-shadow: white 0 0 1.1em 0, #ff8866 -1em 1em 0 0.5em, #ffcc66 -1em 1em 0 0.5em, #66dd77 -1em 1em 0 0.5em, #44aaee -1em 1em 0 0.5em;
+	}
+
+	33.33% {
+		box-shadow: white 0 0 1.1em 0, #ff8866 -1em -1em 0 0.5em, #ffcc66 -1em 1em 0 0.5em, #66dd77 -1em -1em 0 0.5em, #44aaee -1em -1em 0 0.5em;
+	}
+
+	41.67% {
+		box-shadow: white 0 0 1.1em 0, #ff8866 1em -1em 0 0.5em, #ffcc66 -1em 1em 0 0.5em, #66dd77 -1em -1em 0 0.5em, #44aaee 1em -1em 0 0.5em;
+	}
+
+	50% {
+		box-shadow: white 0 0 1.1em 0, #ff8866 1em 1em 0 0.5em, #ffcc66 -1em 1em 0 0.5em, #66dd77 -1em -1em 0 0.5em, #44aaee 1em -1em 0 0.5em;
+	}
+
+	58.33% {
+		box-shadow: white 0 0 1.1em 0, #ff8866 -1em 1em 0 0.5em, #ffcc66 -1em 1em 0 0.5em, #66dd77 -1em -1em 0 0.5em, #44aaee 1em -1em 0 0.5em;
+	}
+
+	66.67% {
+		box-shadow: white 0 0 1.1em 0, #ff8866 -1em -1em 0 0.5em, #ffcc66 -1em -1em 0 0.5em, #66dd77 -1em -1em 0 0.5em, #44aaee 1em -1em 0 0.5em;
+	}
+
+	75% {
+		box-shadow: white 0 0 1.1em 0, #ff8866 1em -1em 0 0.5em, #ffcc66 1em -1em 0 0.5em, #66dd77 1em -1em 0 0.5em, #44aaee 1em -1em 0 0.5em;
+	}
+
+	83.33% {
+		box-shadow: white 0 0 1.1em 0, #ff8866 1em 1em 0 0.5em, #ffcc66 1em -1em 0 0.5em, #66dd77 1em 1em 0 0.5em, #44aaee 1em 1em 0 0.5em;
+	}
+
+	91.67% {
+		box-shadow: white 0 0 1.1em 0, #ff8866 -1em 1em 0 0.5em, #ffcc66 1em -1em 0 0.5em, #66dd77 1em 1em 0 0.5em, #44aaee -1em 1em 0 0.5em;
+	}
+
+	100% {
+		box-shadow: white 0 0 1.1em 0, #ff8866 -1em -1em 0 0.5em, #ffcc66 1em -1em 0 0.5em, #66dd77 1em 1em 0 0.5em, #44aaee -1em 1em 0 0.5em;
+	}
+}
+
+@-moz-keyframes cssload-dots {
+	0% {
+		box-shadow: white 0 0 1.1em 0, rgb(255,136,102) -1em -1em 0 0.5em, rgb(255,204,102) 1em -1em 0 0.5em, rgb(102,221,119) 1em 1em 0 0.5em, rgb(68,170,238) -1em 1em 0 0.5em;
+	}
+
+	8.33% {
+		box-shadow: white 0 0 1.1em 0, rgb(255,136,102) 1em -1em 0 0.5em, rgb(255,204,102) 1em -1em 0 0.5em, rgb(102,221,119) 1em 1em 0 0.5em, rgb(68,170,238) -1em 1em 0 0.5em;
+	}
+
+	16.67% {
+		box-shadow: white 0 0 1.1em 0, rgb(255,136,102) 1em 1em 0 0.5em, rgb(255,204,102) 1em 1em 0 0.5em, rgb(102,221,119) 1em 1em 0 0.5em, rgb(68,170,238) -1em 1em 0 0.5em;
+	}
+
+	25% {
+		box-shadow: white 0 0 1.1em 0, #ff8866 -1em 1em 0 0.5em, #ffcc66 -1em 1em 0 0.5em, #66dd77 -1em 1em 0 0.5em, #44aaee -1em 1em 0 0.5em;
+	}
+
+	33.33% {
+		box-shadow: white 0 0 1.1em 0, #ff8866 -1em -1em 0 0.5em, #ffcc66 -1em 1em 0 0.5em, #66dd77 -1em -1em 0 0.5em, #44aaee -1em -1em 0 0.5em;
+	}
+
+	41.67% {
+		box-shadow: white 0 0 1.1em 0, #ff8866 1em -1em 0 0.5em, #ffcc66 -1em 1em 0 0.5em, #66dd77 -1em -1em 0 0.5em, #44aaee 1em -1em 0 0.5em;
+	}
+
+	50% {
+		box-shadow: white 0 0 1.1em 0, #ff8866 1em 1em 0 0.5em, #ffcc66 -1em 1em 0 0.5em, #66dd77 -1em -1em 0 0.5em, #44aaee 1em -1em 0 0.5em;
+	}
+
+	58.33% {
+		box-shadow: white 0 0 1.1em 0, #ff8866 -1em 1em 0 0.5em, #ffcc66 -1em 1em 0 0.5em, #66dd77 -1em -1em 0 0.5em, #44aaee 1em -1em 0 0.5em;
+	}
+
+	66.67% {
+		box-shadow: white 0 0 1.1em 0, #ff8866 -1em -1em 0 0.5em, #ffcc66 -1em -1em 0 0.5em, #66dd77 -1em -1em 0 0.5em, #44aaee 1em -1em 0 0.5em;
+	}
+
+	75% {
+		box-shadow: white 0 0 1.1em 0, #ff8866 1em -1em 0 0.5em, #ffcc66 1em -1em 0 0.5em, #66dd77 1em -1em 0 0.5em, #44aaee 1em -1em 0 0.5em;
+	}
+
+	83.33% {
+		box-shadow: white 0 0 1.1em 0, #ff8866 1em 1em 0 0.5em, #ffcc66 1em -1em 0 0.5em, #66dd77 1em 1em 0 0.5em, #44aaee 1em 1em 0 0.5em;
+	}
+
+	91.67% {
+		box-shadow: white 0 0 1.1em 0, #ff8866 -1em 1em 0 0.5em, #ffcc66 1em -1em 0 0.5em, #66dd77 1em 1em 0 0.5em, #44aaee -1em 1em 0 0.5em;
+	}
+
+	100% {
+		box-shadow: white 0 0 1.1em 0, #ff8866 -1em -1em 0 0.5em, #ffcc66 1em -1em 0 0.5em, #66dd77 1em 1em 0 0.5em, #44aaee -1em 1em 0 0.5em;
+	}
+}

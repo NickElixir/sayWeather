@@ -13,9 +13,11 @@ class currentWeather {
 				break;
 		}
 		let request = new XMLHttpRequest();
+		document.body.querySelector(".cssload-wrapper").classList.toggle("invisible");
 		request.open("GET", http, false);
 		request.send();
 		console.log("Data getted");
+		document.body.querySelector(".cssload-wrapper").classList.toggle("invisible");
 		if (request.status != 200) {
 			alert(request.status + ': ' + request.statusText);
 		} else {
