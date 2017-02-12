@@ -37,8 +37,9 @@
         let div = document.createElement("div");
         div.className = "container";
         let loadingIcon = document.createElement("div");
-        loadingIcon.innerHTML = '<div class="cssload-wrapper"><div class="cssload-dots"></div></div>';
-        loadingIcon.className = "invisible";
+        loadingIcon.className = "cssload-wrapper";
+        loadingIcon.innerHTML = '<div class="cssload-dots"></div>';
+        loadingIcon.classList.toggle("invisible");
         let header = new Header([loadingIcon]);
         document.body.appendChild(header.elem);
 

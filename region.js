@@ -27,37 +27,6 @@ class RegionTable extends Table { //no headers
 		});
 	}
 }
-function searchRegion(city) {
-	let request = new XMLHttpRequest();
-	document.body.querySelector(".cssload-wrapper").classList.toggle("invisible");
-	request.open("GET", "http://api.openweathermap.org/data/2.5/find?type=like&appid=" + sayWeatherUserData.weatherApiKey + "&q=" + city, true);
-	request.send();
-	request.timeout = 30000;
-	request.ontimeout = function() {
-		alert("Извините, запрос превысил максимальное время");
-	}
-	request.onreadystatechange = function() {
-		if (request.readyState != 4) return;
-		console.log("data getted");
-		document.body.querySelector(".cssload-wrapper").classList.toggle("invisible");
-		if (request.status == 200) {
-			console.log("date getted successfully");
-			let answer = JSON.parse(request.responseText);
-			if (answer.count >= 1) {
-				let cities = [];
-				for (let i in answer.list) {
-					cities.push(new Region(answer.list[i].name, answer.list[i].id, answer.list[i].coord.lat, answer.list[i].coord.lon, answer.list[i].sys.country));
-				}
-				console.log(cities);
-				return cities;
-			} else {
-				alert("Sorry, this city is not found.");
-			}
-		} else {
-			alert("Error: " + request.status + ' : ' + request.statusText);
-		}
-	}
-}
 class SearchRegionForm extends Form{
 	constructor() {
 		super("searchRegionForm",
@@ -70,6 +39,8 @@ class SearchRegionForm extends Form{
 					let request = new XMLHttpRequest();
 					request.open("GET", "http://api.openweathermap.org/data/2.5/find?type=like&appid=" + sayWeatherUserData.weatherApiKey + "&q=" + value, true);
 					request.send();
+					document.body.querySelector(".cssload-wrapper").classList.toggle("invisible");
+					console.log(document.body.querySelector(".cssload-wrapper"));
 					request.timeout = 20000;
 					request.ontimeout = function() {
 						alert("Извините, запрос превысил максимальное время");
@@ -95,10 +66,12 @@ class SearchRegionForm extends Form{
 								table = document.body.querySelector("#searchedRegions");
 								if (table) document.forms.searchRegionForm.removeChild(table);
 								document.forms.searchRegionForm.appendChild(this.table.elem);
+								document.body.querySelector(".cssload-wrapper").classList.toggle("invisible");
 							} else {
 								alert("Sorry, this city is not found.");
 							}
 						} else {
+							document.body.querySelector(".cssload-wrapper").classList.toggle("invisible");
 							alert("Error: " + request.status + ' : ' + request.statusText);
 						}
 					}

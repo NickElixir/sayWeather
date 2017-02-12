@@ -13,22 +13,22 @@ class currentWeather {
 				break;
 		}
 		let request = new XMLHttpRequest();
-		document.body.querySelector(".cssload-wrapper").classList.toggle("invisible");
 		request.open("GET", http, false);
 		request.send();
 		console.log("Data getted");
 		document.body.querySelector(".cssload-wrapper").classList.toggle("invisible");
 		if (request.status != 200) {
 			alert(request.status + ': ' + request.statusText);
+			document.body.querySelector(".cssload-wrapper").classList.toggle("invisible");
 		} else {
 			console.log("Date getted succesfully");
 			let answer = JSON.parse(request.responseText);
 			for (let key in answer) {
 				this[key] = answer[key];
 			}
-
 			this.wind.diraction = currentWeather.prototype.degToDiraction(this.wind.deg);
 			this.units = units;
+			document.body.querySelector(".cssload-wrapper").classList.toggle("invisible");
 		}
 	}
 	degToDiraction(deg) {
