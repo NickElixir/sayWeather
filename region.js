@@ -21,41 +21,13 @@ class RegionTable extends Table { //no headers
 			let target = event.target;
 			target = target.closest("tr");
 			if (target) {
+				let last = document.body.querySelector("#searchedRegions .selected");
+				if (last) last.classList.toggle("selected");
 				target.className = "selected";
 				sayWeatherUserData.regionId = target.getAttribute("regionId");
+				localStorage.sayWeatherUserData = JSON.stringify(sayWeatherUserData);
 			}
 		});
-	}
-}
-function searchRegion(city) {
-	let request = new XMLHttpRequest();
-	document.body.querySelector(".cssload-wrapper").classList.toggle("invisible");
-	request.open("GET", "http://api.openweathermap.org/data/2.5/find?type=like&appid=" + sayWeatherUserData.weatherApiKey + "&q=" + city, true);
-	request.send();
-	request.timeout = 30000;
-	request.ontimeout = function() {
-		alert("Извините, запрос превысил максимальное время");
-	}
-	request.onreadystatechange = function() {
-		if (request.readyState != 4) return;
-		console.log("data getted");
-		document.body.querySelector(".cssload-wrapper").classList.toggle("invisible");
-		if (request.status == 200) {
-			console.log("date getted successfully");
-			let answer = JSON.parse(request.responseText);
-			if (answer.count >= 1) {
-				let cities = [];
-				for (let i in answer.list) {
-					cities.push(new Region(answer.list[i].name, answer.list[i].id, answer.list[i].coord.lat, answer.list[i].coord.lon, answer.list[i].sys.country));
-				}
-				console.log(cities);
-				return cities;
-			} else {
-				alert("Sorry, this city is not found.");
-			}
-		} else {
-			alert("Error: " + request.status + ' : ' + request.statusText);
-		}
 	}
 }
 class SearchRegionForm extends Form{
@@ -90,7 +62,7 @@ class SearchRegionForm extends Form{
 									cities[i].render();
 									tr.push(cities[i].tr);
 								}
-								let table = new RegionTable(tr, {id: "searchedRegions"});
+								let table = new RegionTable(tr, {id: "searchedRegions", cellspacing: 0});
 								this.table = table;
 								table = document.body.querySelector("#searchedRegions");
 								if (table) document.forms.searchRegionForm.removeChild(table);

@@ -8,7 +8,8 @@
     .container {
         width: 100%;
         font-size: 18px;
-        background-color: #00e700;
+        margin-top: 2em;
+        padding: 0.5em;
     }
     .button {
         font-size: 1.4em;
@@ -92,7 +93,6 @@ header {
     transition-timing-function: swing;
     max-width: 2.5em;
     max-height: 50px;
-    background-color: #14B9FF;
     position: fixed;
     top: 20px;
     left: 20px;
@@ -376,4 +376,18 @@ select {
     -webkit-transform: rotate(450deg);
             transform: rotate(450deg);
   }
+}
+/* Table styles */
+td {
+  padding: 0.5em;
+}
+#searchedRegions tr {
+  background-color: #ff0303;
+  color: #fff;
+}
+#searchedRegions tr:hover {
+  background-color: #ff3636;
+}
+#searchedRegions .selected, #searchedRegions .selected:hover {
+  background-color: #369bff;
 }
