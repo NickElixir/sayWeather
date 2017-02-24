@@ -82,6 +82,10 @@ header {
 }
 .button:hover {
     background-color: #fc771d;
+    cursor: pointer;
+}
+.checkbox:hover {
+    color: #2196F3;
 }
 /* Menu styles and functional */
 .navOpen {

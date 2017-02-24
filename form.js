@@ -5,7 +5,7 @@ class Form {
         this.legend = legend ? legend : null;
         this.submitFunc = submitFunc ? submitFunc : null;
             //If there is no submit function, please add to this.submitFunc.
-            this.submitElem = submitElem ? submitElem : new Submit(this.name + "-submit", "Отправить");
+            this.submitElem = submitElem ? submitElem : new Submit(this.name + "-submit", "SUBMIT");
             //If there is no submit element, it will be made automatically.
         this.render();
     }
@@ -21,11 +21,21 @@ class Form {
             if (this.elements[i] instanceof Note) {
                 form.appendChild(this.elements[i].elem);
             } else {
-                let div = document.createElement("div");
-                div.className = "textfield";
-                let label = document.createElement("label");
-                label.innerHTML = this.elements[i].header;
-                div.appendChild(label);
+                if (this.elements[i] instanceof Checkbox) {
+                    var div = document.createElement("p");
+                    div.className = "checkbox";
+                    div.innerHTML = this.elements[i].header;
+                    div.addEventListener("click", function(){
+                        if (event.target.tagName == "P") {
+                            event.target.children[0].checked = !event.target.children[0].checked;
+                        }
+                    });
+                } else {
+                    var div = document.createElement("div");
+                    let label = document.createElement("label");
+                    label.innerHTML = this.elements[i].header;
+                    div.appendChild(label);
+                }
                 div.appendChild(this.elements[i].elem);
                 form.appendChild(div);
             }
@@ -35,6 +45,60 @@ class Form {
         form.appendChild(this.submitElem.elem);
 
         this.elem = form;
+    }
+    static createSearchRegion() {
+		return new Form("searchRegionForm",
+			[new Search("searchRegionName", "City")], 
+			"Search City for weather",
+			function(event) {
+				event.preventDefault();
+				let value = document.forms.searchRegionForm.elements.searchRegionName.value;
+				if (value) {
+					let request = new XMLHttpRequest();
+					request.open("GET", "http://api.openweathermap.org/data/2.5/find?type=like&appid=" + sayWeatherUserData.weatherApiKey + "&q=" + value, true);
+					request.send();
+					request.timeout = 20000;
+					request.ontimeout = function() {
+						alert("Извините, запрос превысил максимальное время");
+					}
+					request.onreadystatechange = function() {
+						if (request.readyState != 4) return;
+						console.log("data getted");
+						if (request.status == 200) {
+							console.log("date getted successfully");
+							let answer = JSON.parse(request.responseText);
+							if (answer.count >= 1) {
+								let cities = [];
+								for (let i in answer.list) {
+									cities.push(new Region(answer.list[i].name, answer.list[i].id, answer.list[i].coord.lat, answer.list[i].coord.lon, answer.list[i].sys.country));
+								}
+								let tr = [];
+								for (let i in cities) {
+									cities[i].render();
+									tr.push(cities[i].tr);
+								}
+								let table = new RegionTable(tr, {id: "searchedRegions", cellspacing: 0});
+								this.table = table;
+								table = document.body.querySelector("#searchedRegions");
+								if (table) document.forms.searchRegionForm.removeChild(table);
+								document.forms.searchRegionForm.appendChild(this.table.elem);
+							} else {
+								alert("Sorry, this city is not found.");
+							}
+						} else {
+							alert("Error: " + request.status + ' : ' + request.statusText);
+						}
+					}
+				}
+		});
+	}
+    static speechTimer() {
+        return new Form("speechTimer", [new Num("hours", "hours", {min: 0, max: 23, step: 1}), new Num("minutes", "minutes", {min: 0, max: 59, step: 1})], "speeech timer", function(){
+            console.log("checking");
+        });
+    }
+    static speechLoop() {
+        return new Form("speechLoopTimer", [new Num("hours", "hours", {min: 0, max: 23, step: 1}), new Num("minutes", "minutes", {min: 0, min: 59, step: 1}), new Checkbox("mon", "mon"), new Checkbox("tue", "tue"), new Checkbox("wen", "wen"), new Checkbox("thu", "thu"), new Checkbox("fri", "fri"), new Checkbox("sat", "sat"), new Checkbox("sun", "sun")]);
     }
 }
 class Input {
@@ -100,7 +164,11 @@ class Radio extends Input {
         }
         p.appendChild(input);
         p.appendChild(document.createTextNode(this.header));
-        p.addEventListener("click", focusRadioParagraph);
+        p.addEventListener("click", function(event) {
+            if (event.target.tagName == "P") {
+                event.target.children[0].checked = true;
+            }
+        });
         this.elem = p;
     }
 }
