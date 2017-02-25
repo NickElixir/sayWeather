@@ -13,6 +13,7 @@
     <script src="menu.js"></script>
     <script src="region.js"></script>
     <script src="weather.js"></script>
+    <script src="speechTimer.js"></script>
     <link rel="stylesheet" href="style.css" />
     <link rel="stylesheet" href="loadingIcon.css" />
     <script>
@@ -22,45 +23,12 @@
             console.log(sayWeatherUserData);
         } else {
             var sayWeatherUserData = readSayWeatherUserData();
+            recommenceTimers();
             console.log(sayWeatherUserData);
         }
     </script>
 </head>
 <body>
-    <script>
-        //let svg = document.createElement("svg");
-        //svg.innerHTML = '<svg class="spinner" width="65px" height="65px" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg"><circle class="path" fill="none" stroke-width="6" stroke-linecap="round" cx="33" cy="33" r="30"></circle>';
-
-        let menu = new Menu([new Li("Главная", {key: "main"})]);
-        document.body.appendChild(menu.elem);
-
-        let div = document.createElement("div");
-        div.className = "container";
-        let loadingIcon = document.createElement("div");
-        loadingIcon.className = "cssload-wrapper";
-        loadingIcon.innerHTML = '<div class="cssload-dots"></div>';
-        loadingIcon.classList.toggle("invisible");
-        let header = new Header([loadingIcon]);
-        document.body.appendChild(header.elem);
-
-        let section = document.createElement("section");
-        section.id = "main";
-        section.className = "visible";
-        var time = Date.now();
-        var form = new SearchRegionForm();
-        section.appendChild(form.elem);
-        function weatherToSpeech() {
-            console.log(sayWeatherUserData.weatherId);
-            let weather = new currentWeather("id", sayWeatherUserData.regionId, "metric").toSpeech();
-        }
-        let button = document.createElement("div");
-        button.className = "button";
-        button.innerHTML = "weatherToSpeech";
-        button.style.backgroundColor = "#67E";
-        button.addEventListener("click", weatherToSpeech);
-        section.appendChild(button);
-        div.appendChild(section);
-        document.body.appendChild(div);
-    </script>
+    <script src="main.js"></script>
 </body>
 </html>

@@ -36,7 +36,7 @@ class Tbody {
             }
         }
         for (let i in this.elements) {
-            elem.appendChild(this.elements[i]);
+            elem.appendChild(this.elements[i].elem);
         }
         this.elem = elem;
     }

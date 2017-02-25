@@ -15,9 +15,13 @@ class currentWeather {
 		let request = new XMLHttpRequest();
 		request.open("GET", http, false);
 		request.send();
+		request.timeout = 10000;
 		console.log("Data getted");
 		document.body.querySelector(".cssload-wrapper").classList.toggle("invisible");
-		if (request.status != 200) {
+		if (request.status == 0) {
+			alert("No Internet Connection. Please check settings.");
+			document.body.querySelector(".cssload-wrapper").classList.toggle("invisible");
+		} else if (request.status != 200) {
 			alert(request.status + ': ' + request.statusText);
 			document.body.querySelector(".cssload-wrapper").classList.toggle("invisible");
 		} else {
