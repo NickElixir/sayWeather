@@ -34,7 +34,7 @@ div.appendChild(section);
 section = document.createElement("section");
 section.id = "loopTimer";
 section.className = "invisible";
-section.appendChild(Form.speechLoop().elem);
+section.appendChild(Form.speechLoopTimer().elem);
 div.appendChild(section);
 
 document.body.appendChild(div);

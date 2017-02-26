@@ -101,12 +101,37 @@ class Form {
 		});
 	}
     static speechTimer() {
-        return new Form("speechTimer", [new Num("hours", "hours", {min: 0, max: 23, step: 1}), new Num("minutes", "minutes", {min: 0, max: 59, step: 1})], "speech timer", function(){
-            console.log("checking");
+        return new Form("speechTimer", [new Num("hours", "hours", {min: 0, max: 23, step: 1}), new Num("minutes", "minutes", {min: 0, max: 59, step: 1})], "speech timer", function(event){
+            event.preventDefault();
+            let hours = document.forms.speechTimer.hours.value;
+            let minutes = document.forms.speechTimer.minutes.value;
+            let indent = new Date().getTime() % 86400000 - new Date().getTimezoneOffset() * 60000;
+            let milleseconds = (hours * 3600 + minutes * 60) * 1000;
+            let difference = milleseconds - indent;
+            if (difference < 0) difference = 86400000 + difference;
+            let timer = new SpeechTimer(false, {indent: difference}, new currentWeather("id", sayWeatherUserData.regionId, sayWeatherUserData.weatherUnits).toString());
+            timer.start();
+            timer.pushToTimers();
         });
     }
-    static speechLoop() {
-        return new Form("speechLoopTimer", [new Num("hours", "hours", {min: 0, max: 23, step: 1}), new Num("minutes", "minutes", {min: 0, min: 59, step: 1}), new Checkbox("mon", "mon"), new Checkbox("tue", "tue"), new Checkbox("wen", "wen"), new Checkbox("thu", "thu"), new Checkbox("fri", "fri"), new Checkbox("sat", "sat"), new Checkbox("sun", "sun")]);
+    static speechLoopTimer() {
+        return new Form("speechLoopTimer", [new Num("hours", "hours", {min: 0, max: 23, step: 1}), new Num("minutes", "minutes", {min: 0, max: 59, step: 1}), new Checkbox("mon", "mon"), new Checkbox("tue", "tue"), new Checkbox("wen", "wen"), new Checkbox("thu", "thu"), new Checkbox("fri", "fri"), new Checkbox("sat", "sat"), new Checkbox("sun", "sun")], "weather speech interval timer", function(event){
+            event.preventDefault();
+            let hours = document.forms.speechLoopTimer.hours.value;
+            let minutes = document.forms.speechLoopTimer.minutes.value;
+            let milleseconds = (hours * 3600 + minutes * 60) * 1000;
+            let week = document.forms.speechLoopTimer.querySelectorAll("input[type=checkbox]");
+            let booleanWeek = [];
+            for (let i = 0; i < week.length; i++) booleanWeek[i] = week[i].checked;
+            for (let i in booleanWeek) {
+                if (booleanWeek[i]) 
+                {
+                    let timer = new SpeechTimer(true, {indent: i * 84600000 + milleseconds, interval: 7 * 86400000},  new currentWeather("id", sayWeatherUserData.regionId, sayWeatherUserData.weatherUnits).toString());
+                    timer.start();
+                    timer.pushToTimers();
+                }
+            }
+        });
     }
 }
 class Input {

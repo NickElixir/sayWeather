@@ -8,19 +8,22 @@ class SpeechTimer {
     }
     start() {
         if (this.loop) {
-            this.startTime = Date.now() % this.interval;
+            let day = new Date().getDay();
+            day = day ? day - 1 : 6;
+            this.startTime = day * 86400000 + Date.now() % 86400000; 
+            let difference = this.indent - this.startTime;
+            if (difference < 0) difference = this.interval + difference;
             setTimeout(function(timer) {
                 textToSpeech(timer.text);
                 timer.timerId = setInterval(textToSpeech, timer.interval, timer.text);
-            }, this.interval - this.startTime + this.indent, this);
+            }, difference, this);
         } else {
-            this.startTime = Date.now();
             this.timerId = setTimeout(textToSpeech, this.indent, this.text);
         }
     }
-    appendToTimers() {
-        sayWeatherUserData.timers.appendChild(this);
-        sayWeatherUserData.save();
+    pushToTimers() {
+        sayWeatherUserData.timers.push(this);
+        localStorage.sayWeatherUserData = JSON.stringify(sayWeatherUserData);
     }
     clear() {
         if (this.loop) clearInterval(this.timerId);
@@ -40,7 +43,7 @@ function textToSpeech(text) {
 }
 function recommenceTimers() {
     let timers = sayWeatherUserData.timers;
-    for (let in timers) {
+    for (let i in timers) {
         if (timers[i].loop) timers[i].start();
         else if (Date.Now <= timers[i].starTime + timers[i].indent) timers[i].timetId = setTimeout(textToSpeech, Date.now() % timers[i].indent, timers[i].text);
     }

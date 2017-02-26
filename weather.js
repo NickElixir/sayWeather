@@ -15,7 +15,6 @@ class currentWeather {
 		let request = new XMLHttpRequest();
 		request.open("GET", http, false);
 		request.send();
-		request.timeout = 10000;
 		console.log("Data getted");
 		document.body.querySelector(".cssload-wrapper").classList.toggle("invisible");
 		if (request.status == 0) {
@@ -56,7 +55,7 @@ class currentWeather {
 	}
 	toString(options) {
 		if(!options) {
-			var options = {description: true, temp: true, pressure: true, humidity: true, temp_min: true, temp_max: true, sea_level: true, grnd_level: true, wind: {speed: true, deg: true, diraction: true}, clouds: {all: true}};
+			var options = {units: "standard", description: true, temp: true, pressure: true, humidity: true, temp_min: true, temp_max: true, sea_level: true, grnd_level: true, wind: {speed: true, deg: true, diraction: true}, clouds: {all: true}};
 		}
 		let parameteres = [];
 		if (options.description) {
@@ -93,7 +92,7 @@ class currentWeather {
 			}
 		}
 		if (options.temp) {
-			parameteres.push("The temperature is " + this.main.temp + " degrees " + selectUnit(this.units, "temp") + ".");
+			parameteres.push("The temperature is " + this.main.temp + " degrees " + selectUnit(options.units, "temp") + ".");
 		}
 		if (options.pressure) {
 			parameteres.push("The pressure is " + this.main.pressure + " hectopascals.");
@@ -112,7 +111,7 @@ class currentWeather {
 		}
 		if (options.wind) {
 			if (options.wind.speed) {
-				parameteres.push("The wind speed is " + this.wind.speed + " " + selectUnit(this.units, "wind") + ".");
+				parameteres.push("The wind speed is " + this.wind.speed + " " + selectUnit(options.units, "wind") + ".");
 			}
 			if (options.wind.diraction) {
 				switch (this.wind.diraction) {
