@@ -97,7 +97,9 @@ class Form {
                             }
 						}
 					}
-				}
+				} else {
+                    alert("Please, enter city name");
+                }
 		});
 	}
     static speechTimer() {
@@ -105,31 +107,44 @@ class Form {
             event.preventDefault();
             let hours = document.forms.speechTimer.hours.value;
             let minutes = document.forms.speechTimer.minutes.value;
-            let indent = new Date().getTime() % 86400000 - new Date().getTimezoneOffset() * 60000;
-            let milleseconds = (hours * 3600 + minutes * 60) * 1000;
-            let difference = milleseconds - indent;
-            if (difference < 0) difference = 86400000 + difference;
-            let timer = new SpeechTimer(false, {indent: difference}, new currentWeather("id", sayWeatherUserData.regionId, sayWeatherUserData.weatherUnits).toString());
-            timer.start();
-            timer.pushToTimers();
+            if (hours && minutes) {
+                let indent = Date.now() % 86400000 - new Date().getTimezoneOffset() * 60000;
+                let milleseconds = (hours * 3600 + minutes * 60) * 1000;
+                let difference = milleseconds - indent;
+                if (difference < 0) difference = 86400000 + difference;
+                let timer = new SpeechTimer(false, {indent: difference}, new currentWeather("id", sayWeatherUserData.regionId, sayWeatherUserData.weatherUnits).toString());
+                timer.start();
+                timer.pushToTimers();
+            } else {
+                alert("Please, enter hours and minutes");
+            }
         });
     }
     static speechLoopTimer() {
-        return new Form("speechLoopTimer", [new Num("hours", "hours", {min: 0, max: 23, step: 1}), new Num("minutes", "minutes", {min: 0, max: 59, step: 1}), new Checkbox("mon", "mon"), new Checkbox("tue", "tue"), new Checkbox("wen", "wen"), new Checkbox("thu", "thu"), new Checkbox("fri", "fri"), new Checkbox("sat", "sat"), new Checkbox("sun", "sun")], "weather speech interval timer", function(event){
+        return new Form("speechLoopTimer", [new Num("hours", "hours", {min: 0, max: 23, step: 1}), new Num("minutes", "minutes", {min: 0, max: 59, step: 1}), new Checkbox("everyDay", "every day"), new Checkbox("mon", "every monday"), new Checkbox("tue", "every tuesday"), new Checkbox("wen", "every wendnsday"), new Checkbox("thu", "every thursday"), new Checkbox("fri", "every friday"), new Checkbox("sat", "every saturday"), new Checkbox("sun", "every sunday")], "weather speech interval timer", function(event){
             event.preventDefault();
             let hours = document.forms.speechLoopTimer.hours.value;
             let minutes = document.forms.speechLoopTimer.minutes.value;
-            let milleseconds = (hours * 3600 + minutes * 60) * 1000;
-            let week = document.forms.speechLoopTimer.querySelectorAll("input[type=checkbox]");
-            let booleanWeek = [];
-            for (let i = 0; i < week.length; i++) booleanWeek[i] = week[i].checked;
-            for (let i in booleanWeek) {
-                if (booleanWeek[i]) 
-                {
-                    let timer = new SpeechTimer(true, {indent: i * 84600000 + milleseconds, interval: 7 * 86400000},  new currentWeather("id", sayWeatherUserData.regionId, sayWeatherUserData.weatherUnits).toString());
+            if (hours && minutes) {
+                let milleseconds = (hours * 3600 + minutes * 60) * 1000;
+                if (document.forms.speechLoopTimer.everyDay.checked) {
+                    let timer = new SpeechTimer(true, {indent: milleseconds, interval: 86400000});
                     timer.start();
                     timer.pushToTimers();
                 }
+                let week = document.forms.speechLoopTimer.querySelectorAll("input[type=checkbox]");
+                let booleanWeek = [];
+                for (let i = 1; i < week.length; i++) booleanWeek[i - 1] = week[i].checked;
+                for (let i in booleanWeek) {
+                    if (booleanWeek[i]) 
+                    {
+                        let timer = new SpeechTimer(true, {indent: i * 84600000 + milleseconds, interval: 7 * 86400000});
+                        timer.start();
+                        timer.pushToTimers();
+                    }
+                }
+            } else {
+                alert("Please, enter hours and minutes");
             }
         });
     }

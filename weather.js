@@ -1,6 +1,6 @@
 class currentWeather {
-	constructor(weatherRequestType, city, units) {
-		let http = "http://api.openweathermap.org/data/2.5/weather?appid=" +sayWeatherUserData.weatherApiKey + "&lang=" + sayWeatherUserData.language + "&units=" + units;
+	constructor(weatherRequestType, city) {
+		let http = "http://api.openweathermap.org/data/2.5/weather?appid=" +sayWeatherUserData.weatherApiKey + "&lang=" + sayWeatherUserData.language + "&units=" + sayWeatherUserData.units;
 		switch (weatherRequestType) {
 			case "q":
 				http += "&q=" + city;
@@ -30,7 +30,7 @@ class currentWeather {
 				this[key] = answer[key];
 			}
 			this.wind.diraction = currentWeather.prototype.degToDiraction(this.wind.deg);
-			this.units = units;
+			this.units = sayWeatherUserData.units;
 			document.body.querySelector(".cssload-wrapper").classList.toggle("invisible");
 		}
 	}
@@ -55,8 +55,9 @@ class currentWeather {
 	}
 	toString(options) {
 		if(!options) {
-			var options = {units: "standard", description: true, temp: true, pressure: true, humidity: true, temp_min: true, temp_max: true, sea_level: true, grnd_level: true, wind: {speed: true, deg: true, diraction: true}, clouds: {all: true}};
+			var options = {description: true, temp: true, pressure: true, humidity: true, temp_min: true, temp_max: true, sea_level: true, grnd_level: true, wind: {speed: true, deg: true, diraction: true}, clouds: {all: true}};
 		}
+		options.untis = sayWeatherUserData.units;
 		let parameteres = [];
 		if (options.description) {
 			let randomChoice = Math.floor(Math.random() * (1 - 0 + 1)) + 0;
