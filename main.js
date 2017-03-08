@@ -1,4 +1,4 @@
-let menu = new Menu([new Li("home", {key: "main"}), new Li("timer", {key: "timer"}), new Li("loop", {key: "loopTimer"})]);
+let menu = new Menu([new Li("home", {key: "main"}), new Li("timer", {key: "timer"}), new Li("loop timer", {key: "loopTimer"}), new Li("settings", {key: "settings"})]);
 document.body.appendChild(menu.elem);
 
 let div = document.createElement("div");
@@ -35,6 +35,12 @@ section = document.createElement("section");
 section.id = "loopTimer";
 section.className = "invisible";
 section.appendChild(Form.speechLoopTimer().elem);
+div.appendChild(section);
+
+section = document.createElement("section");
+section.id = "settings";
+section.className = "invisible";
+section.appendChild(Form.settings().elem);
 div.appendChild(section);
 
 document.body.appendChild(div);

@@ -57,7 +57,7 @@ class currentWeather {
 		if(!options) {
 			var options = {description: true, temp: true, pressure: true, humidity: true, temp_min: true, temp_max: true, sea_level: true, grnd_level: true, wind: {speed: true, deg: true, diraction: true}, clouds: {all: true}};
 		}
-		options.untis = sayWeatherUserData.units;
+		options.units = sayWeatherUserData.units;
 		let parameteres = [];
 		if (options.description) {
 			let randomChoice = Math.floor(Math.random() * (1 - 0 + 1)) + 0;
@@ -77,7 +77,7 @@ class currentWeather {
 					case "standard":
 						return "Kelvin";
 					case "metric":
-						return"Celsuis";
+						return "Celsuis";
 					case "imperial":
 						return "Fahrenheit";
 				}

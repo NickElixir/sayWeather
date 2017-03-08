@@ -148,6 +148,13 @@ class Form {
             }
         });
     }
+    static settings() {
+        return new Form("settings", [new RadioList("units", [{name: "units", header: "standard – Kelvin, meter/sec, hPa", value: "standard"}, {name: "units", header: "metric – Celsius, meter/sec, hPa", value: "metric"}, {name: "units", header: "imperial – Fahrenheit, meter/sec, hPa", value: "imperial"}])], "settings", function(event) {
+            event.preventDefault();
+            sayWeatherUserData.units = document.forms.settings.units.value;
+            localStorage.sayWeatherUserData = JSON.stringify(sayWeatherUserData);
+        });
+    }
 }
 class Input {
     constructor(name, header, options, parent) {
