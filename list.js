@@ -1,39 +1,22 @@
-class Ol_Ul {
+class Ol_Ul extends Element{
     constructor(type, elements, options, header) {
-        this.type = type;
-        this.elements = elements;
-        this.options = options ? options : null;
+        super(type, options, elements);
         this.header = header ? header : null;
         this.render();
     }
     render() {
-        if (this.type.toLowerCase() == "ol") {
-            var list = document.createElement("ol");
-        } else {
-            var list = document.createElement("ul");
-        }
-        for (let i in this.elements) {
-            list.appendChild(this.elements[i].elem ? this.elements[i].elem : this.elements[i]);
-        }
-        for (let i in this.options) {
-            list.setAttribute(i, this.options[i]);
-        }
-        this.elem = list;
+        super.render();
     }
 
 }
-class Li {
+class Li extends Element{
     constructor(innerHTML, options) {
+        super("li", options);
         this.innerHTML = innerHTML;
-        this.options = options ? options : null;
         this.render();
     }
     render() {
-        let li = document.createElement("li");
-        li.innerHTML = this.innerHTML;
-        for (let i in this.options) {
-            li.setAttribute(i, this.options[i]);
-        }
-        this.elem = li;
+        super.render();
+        this.elem.innerHTML = this.innerHTML;
     }
 }

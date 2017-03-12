@@ -18,17 +18,14 @@ class Form {
             form.appendChild(legend);
         }
         for (let i in this.elements) {
-            if (this.elements[i] instanceof Note) {
-                form.appendChild(this.elements[i].elem);
-            } else {
+            if (this.elements[i] instanceof Note) form.appendChild(this.elements[i].elem);
+            else {
                 if (this.elements[i] instanceof Checkbox) {
                     var div = document.createElement("p");
                     div.className = "checkbox";
                     div.innerHTML = this.elements[i].header;
                     div.addEventListener("click", function(){
-                        if (event.target.tagName == "P") {
-                            event.target.children[0].checked = !event.target.children[0].checked;
-                        }
+                        if (event.target.tagName == "P") event.target.children[0].checked = !event.target.children[0].checked;
                     });
                 } else {
                     var div = document.createElement("div");
@@ -43,7 +40,6 @@ class Form {
         form.addEventListener("submit", this.submitFunc);
         this.submitElem.render();
         form.appendChild(this.submitElem.elem);
-
         this.elem = form;
     }
     static createSearchRegion() {
@@ -156,28 +152,20 @@ class Form {
         });
     }
 }
-class Input {
+class Input extends Element{
     constructor(name, header, options, parent) {
+        super("input", options);
         this.name = name;
-        if (!this.type) {
-            this.type = "text";
-        }
+        this.type = this.type ? this.type : "text";
         this.header = header;
-        this.options = options ? options : null;
         if (!parent) {
             this.render();
         }
     }
     render() {
-        let input = document.createElement("input");
-        input.name = this.name;
-        input.type = this.type;
-        if (this.options) {
-            for (let i in this.options) {
-                input.setAttribute(i, this.options[i]);
-            }
-        }
-        this.elem = input;
+        super.render();
+        this.elem.name = this.name;
+        this.elem.type = this.type;
     }
 }
 class Num extends Input {
@@ -227,20 +215,20 @@ class Radio extends Input {
         this.elem = p;
     }
 }
-class RadioList {
-    constructor(header, elements) {
-        this.elements = elements;
+class RadioList extends Element {
+    constructor(header, items) {
+        super("div");
+        this.items = items;
         this.header = header;
         this.render();
     }
     render() {
-        let div = document.createElement("div");
-        for (let i in this.elements) {
-            let radio = new Radio(this.elements[i].name, this.elements[i].header, {value : this.elements[i].value});
+        super.render();
+        for (let i in this.items) {
+            let radio = new Radio(this.items[i].name, this.items[i].header, {value : this.items[i].value});
             radio.render();
-            div.appendChild(radio.elem);
+            this.elem.appendChild(radio.elem);
         }
-        this.elem = div;
     }
 }
 class Submit extends Input {
@@ -254,21 +242,19 @@ class Submit extends Input {
         this.elem.value = this.header;
     }
 }
-class Select {
-    constructor(name, Options, header) {
+class Select extends Element{
+    constructor(name, Options, header, options) {
+        super("select", options);
         this.name = name;
         this.Options = Options;
         this.header = header;
         this.render();
     }
     render() {
-        let select = document.createElement("select");
-        select.name = this.name;
+        super.render();
+        this.elem.name = this.name;
         this.renderOptions();
-        for (let i in this.renderedOptions) {
-            select.appendChild(this.renderedOptions[i]);
-        }
-        this.elem = select;
+        for (let i in this.renderedOptions) this.elem.appendChild(this.renderedOptions[i]);
     }
     renderOptions() {
         let options = [];

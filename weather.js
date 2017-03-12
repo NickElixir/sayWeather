@@ -60,10 +60,12 @@ class currentWeather {
 		options.units = sayWeatherUserData.units;
 		let parameteres = [];
 		if (options.description) {
-			let randomChoice = Math.floor(Math.random() * (1 - 0 + 1)) + 0;
 			if (this.weather[0].main == "Clouds") {
 				parameteres.push("There are " + this.weather[0].description + ".");
+			} else  if (this.weather[0].main == "Clear sky") {
+				parameteres.push("There is " + this.weather[0].description + ".");
 			} else {
+				let randomChoice = Math.floor(Math.random() * (1 - 0 + 1)) + 0;
 				if (randomChoice) {
 					parameteres.push("Today in " + this.name + " is " + this.weather[0].description + ".");
 				} else {
